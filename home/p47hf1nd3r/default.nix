@@ -1,6 +1,7 @@
 { pkgs, inputs, ... }:
 let
   larksuite = pkgs.callPackage ./larksuite { };
+  larksuite-cli = pkgs.callPackage ./larksuite-cli { };
 in
 {
   imports = [
@@ -19,6 +20,7 @@ in
     telegram-desktop
     slack
     larksuite
+    larksuite-cli
   ];
 
   home.file = {

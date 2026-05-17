@@ -1,5 +1,6 @@
 { pkgs, inputs, ... }:
 let
+  system = pkgs.stdenv.hostPlatform.system;
   larksuite = pkgs.callPackage ./larksuite { };
   larksuite-cli = pkgs.callPackage ./larksuite-cli { };
 in
@@ -22,6 +23,9 @@ in
     slack
     larksuite
     larksuite-cli
+
+    inputs.llm-agents.packages.${system}.but
+    inputs.llm-agents.packages.${system}.gitnexus
   ];
 
   home.file = {

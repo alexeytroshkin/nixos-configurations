@@ -1,11 +1,17 @@
 {
   description = "One flake to rule them all";
 
+  nixConfig = {
+    extra-substituters = [ "https://cache.numtide.com" ];
+    extra-trusted-public-keys = [ "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g=" ];
+  };
+
   inputs = {
     dms.url = "github:AvengeMedia/DankMaterialShell/stable";
     dms.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    llm-agents.url = "github:numtide/llm-agents.nix";
     niri.url = "github:sodiboo/niri-flake";
     niri.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -53,4 +59,5 @@
         };
       };
     };
+
 }

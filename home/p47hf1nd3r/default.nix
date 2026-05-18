@@ -26,6 +26,7 @@ in
     larksuite-cli
 
     inputs.llm-agents.packages.${system}.but
+    inputs.llm-agents.packages.${system}.cursor-agent
     gitnexus
     # inputs.llm-agents.packages.${system}.gitnexus
   ];

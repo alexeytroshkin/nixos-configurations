@@ -14,6 +14,7 @@
     inputs.nixos-hardware.nixosModules.lenovo-legion-16arh7h-hybrid
     inputs.niri.nixosModules.niri
     ./hardware-configuration.nix
+    ./modules/gpg.nix
     ./modules/virtualisation.nix
     ./modules/xwayland.nix
     ./modules/vpn.nix

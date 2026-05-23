@@ -22,6 +22,7 @@ in
     yandex-music
     telegram-desktop
     slack
+    beekeeper-studio
     larksuite
     larksuite-cli
 

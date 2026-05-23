@@ -1,7 +1,6 @@
 { pkgs, inputs, ... }:
 let
   system = pkgs.stdenv.hostPlatform.system;
-  gitnexus = pkgs.callPackage ./gitnexus { };
   larksuite = pkgs.callPackage ./larksuite { };
   larksuite-cli = pkgs.callPackage ./larksuite-cli { };
 in
@@ -27,9 +26,9 @@ in
     larksuite-cli
 
     inputs.llm-agents.packages.${system}.but
+    inputs.llm-agents.packages.${system}.gitbutler
     inputs.llm-agents.packages.${system}.cursor-agent
-    gitnexus
-    # inputs.llm-agents.packages.${system}.gitnexus
+    inputs.llm-agents.packages.${system}.gitnexus
   ];
 
   home.file = {

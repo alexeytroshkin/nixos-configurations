@@ -99,11 +99,9 @@ in
       layout = {
         background-color = "transparent";
         preset-column-widths = [
-          { proportion = 1. / 4.; }
           { proportion = 1. / 3.; }
           { proportion = 1. / 2.; }
           { proportion = 2. / 3.; }
-          { proportion = 3. / 4.; }
         ];
       };
       overview = {

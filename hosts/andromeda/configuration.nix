@@ -153,8 +153,8 @@
   #----------------------------------------------------------------
 
   environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1"; # Принудительный запуск приложений на базе Chromium и Electron в режиме wayland вместо xwayland
     QT_QPA_PLATFORM = "wayland"; # Принудительный запуск приложений на базе Qt в режиме wayland
+    # NIXOS_OZONE_WL = "1"; # Принудительный запуск приложений на базе Chromium и Electron в режиме wayland вместо xwayland
     # GDK_BACKEND = "wayland,x11"; # Принудительный запуск приложений на базе Gtk в режиме wayland
   };
 

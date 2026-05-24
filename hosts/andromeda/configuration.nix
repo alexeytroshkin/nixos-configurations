@@ -13,11 +13,7 @@
     inputs.nixos-hardware.nixosModules.lenovo-legion-16arh7h-hybrid
     inputs.niri.nixosModules.niri
     ./hardware-configuration.nix
-    ./modules/ld.nix
-    ./modules/gpg.nix
-    ./modules/virtualisation.nix
-    ./modules/xwayland.nix
-    ./modules/vpn.nix
+    ./modules/gui
   ];
 
   # Bootloader.
@@ -45,12 +41,6 @@
     LC_TIME = "ru_RU.UTF-8";
   };
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.p47hf1nd3r = {
     isNormalUser = true;
@@ -74,111 +64,84 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile
-  environment.systemPackages = with pkgs; [
-    nixd
-    nixfmt-rs
-    neovim
-    git
-    nautilus
-  ];
-
-  # Niri related
-
-  nixpkgs.overlays = [
-    inputs.niri.overlays.niri
-  ];
-
-  programs.niri = {
-    enable = true;
-    package = pkgs.niri-unstable;
+  environment = {
+    systemPackages = with pkgs; [
+      nixd
+      nixfmt-rs
+      neovim
+      git
+    ];
   };
 
-  environment.pathsToLink = [
-    "/share/applications"
-    "/share/xdg-desktop-portal"
-  ];
-
-  # use dms polkit agent instead of niri-flake agent
-  systemd.user.services.niri-flake-polkit.enable = false;
-
-  # Dankmaterialshell
-
-  programs.dms-shell = {
-    enable = true;
-    package = inputs.dms.packages.${pkgs.stdenv.hostPlatform.system}.default;
-    systemd.enable = false; # use enableSpawn in home-manager
-  };
-
-  services.displayManager.dms-greeter = {
-    enable = true;
-    package = inputs.dms.packages.${pkgs.stdenv.hostPlatform.system}.default;
-    compositor = {
-      name = "niri";
-      customConfig = ''
-        hotkey-overlay { 
-          skip-at-startup; 
-        }
-        output "HDMI-A-1" {
-          mode "7680x2160@119.997"
-          scale 1.5
-          position x=0 y=0
-          layout {
-            always-center-single-column
-          }
-        }
-        output "eDP-1" {
-          mode "2560x1600@240.000"
-          scale 1.5
-          position x=0 y=0
-          layout {
-            always-center-single-column
-          }
-        }
-      '';
+  hardware = {
+    #----------------------------------------------------------------
+    # Идентификаторы в nixos-hardware не совпадают с фактическими
+    # поскольку конфиг взят от другой модели
+    # https://github.com/NixOS/nixos-hardware/blob/master/lenovo/legion/16arh7h/hybrid/default.nix
+    #
+    # Требуется заменить amdgpuBusId на 6:0:0. Без этого UI сильно тормозит
+    #----------------------------------------------------------------
+    nvidia.prime = {
+      amdgpuBusId = "PCI:6:0:0";
+      nvidiaBusId = "PCI:1:0:0";
     };
-    configHome = "/home/p47hf1nd3r";
-  };
-
-  #----------------------------------------------------------------
-
-  services.logind = {
-    settings.Login = {
-      HandleLidSwitch = "ignore";
-      HandleLidSwitchDocked = "ignore";
-      HandleLidSwitchExternalPower = "ignore";
+    #----------------------------------------------------------------
+    # Почему то в nixos-hardware не учитывается bluetooth.
+    # Включаем сами.
+    #----------------------------------------------------------------
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+      settings = {
+        General = {
+          Experimental = true;
+        };
+      };
     };
   };
 
-  #----------------------------------------------------------------
-
-  environment.sessionVariables = {
-    QT_QPA_PLATFORM = "wayland"; # Принудительный запуск приложений на базе Qt в режиме wayland
-    # NIXOS_OZONE_WL = "1"; # Принудительный запуск приложений на базе Chromium и Electron в режиме wayland вместо xwayland
-    # GDK_BACKEND = "wayland,x11"; # Принудительный запуск приложений на базе Gtk в режиме wayland
+  services = {
+    # Отключаем какие либо действия при закрытии крышки лэптопа
+    logind = {
+      settings.Login = {
+        HandleLidSwitch = "ignore";
+        HandleLidSwitchDocked = "ignore";
+        HandleLidSwitchExternalPower = "ignore";
+      };
+    };
   };
 
-  #----------------------------------------------------------------
-  # Идентификаторы в nixos-hardware не совпадают с фактическими
-  # поскольку конфиг взят от другой модели
-  # https://github.com/NixOS/nixos-hardware/blob/master/lenovo/legion/16arh7h/hybrid/default.nix
-  #
-  # Требуется заменить amdgpuBusId на 6:0:0. Без этого UI сильно тормозит
-  #----------------------------------------------------------------
-
-  hardware.nvidia.prime = {
-    amdgpuBusId = "PCI:6:0:0";
-    nvidiaBusId = "PCI:1:0:0";
+  virtualisation = {
+    podman = {
+      enable = true;
+      dockerCompat = true;
+    };
   };
 
-  #----------------------------------------------------------------
-
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-    settings = {
-      General = {
-        Experimental = true;
+  programs = {
+    gnupg = {
+      agent = {
+        enable = true;
+      };
+    };
+    #----------------------------------------------------------------
+    # Включено для работы aspire. Без nix-ld была ошибка с бинарником
+    # DCP - проще было обойтись так
+    #----------------------------------------------------------------
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        icu
+        libsecret
+        openssl
+        stdenv.cc.cc.lib
+        zlib
+      ];
+    };
+    throne = {
+      enable = true;
+      tunMode = {
+        enable = true;
       };
     };
   };

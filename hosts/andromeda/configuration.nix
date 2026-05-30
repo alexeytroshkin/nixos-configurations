@@ -16,9 +16,18 @@
     ./modules/gui
   ];
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+    # Добавляем поддержку файловых систем для монтируемых устройств
+    supportedFilesystems = [
+      "ntfs"
+      "vfat"
+      "exfat"
+    ];
+  };
 
   networking.hostName = "andromeda"; # Define your hostname.
   networking.networkmanager.enable = true;
@@ -108,6 +117,9 @@
         HandleLidSwitchDocked = "ignore";
         HandleLidSwitchExternalPower = "ignore";
       };
+    };
+    udisks2 = {
+      enable = true;
     };
   };
 

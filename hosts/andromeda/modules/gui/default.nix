@@ -67,6 +67,10 @@
       };
       configHome = "/home/p47hf1nd3r";
     };
+    # GVfs необходимо для nautilus
+    gvfs = {
+      enable = true;
+    };
   };
 
   programs = {

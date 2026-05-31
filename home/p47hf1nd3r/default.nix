@@ -191,4 +191,8 @@ in
     enable = true;
     setAsDefaultBrowser = true;
   };
+
+  programs.numbat = {
+    enable = true;
+  };
 }

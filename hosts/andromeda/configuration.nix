@@ -150,6 +150,9 @@
         zlib
       ];
     };
+    amnezia-vpn = {
+      enable = true;
+    };
     throne = {
       enable = true;
       tunMode = {

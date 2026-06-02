@@ -21,9 +21,10 @@ in
     yandex-music
     telegram-desktop
     slack
-    beekeeper-studio
     larksuite
     larksuite-cli
+    beekeeper-studio
+    postman
 
     inputs.llm-agents.packages.${system}.but
     inputs.llm-agents.packages.${system}.gitbutler

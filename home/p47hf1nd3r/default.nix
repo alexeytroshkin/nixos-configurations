@@ -17,14 +17,15 @@ in
   home.username = "p47hf1nd3r";
   home.homeDirectory = "/home/p47hf1nd3r";
   home.packages = with pkgs; [
+    beekeeper-studio
     just
-    yandex-music
-    telegram-desktop
-    slack
     larksuite
     larksuite-cli
-    beekeeper-studio
     postman
+    slack
+    sops
+    telegram-desktop
+    yandex-music
 
     inputs.llm-agents.packages.${system}.but
     inputs.llm-agents.packages.${system}.gitbutler

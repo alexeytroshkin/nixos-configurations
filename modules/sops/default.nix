@@ -15,7 +15,7 @@
     templates = {
       "networkmanager_env" = {
         content = ''
-          DOM_RU_OUlA_5G=${config.sops.placeholder.wifi_psk}
+          GL-MT6000-9b8-5G=${config.sops.placeholder.wifi_psk}
         '';
         owner = "root";
       };

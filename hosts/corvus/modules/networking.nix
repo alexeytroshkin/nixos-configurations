@@ -7,20 +7,20 @@
       enable = true;
       ensureProfiles = {
         profiles = {
-          "DOM.RU-OUlA-5G" = {
+          "GL-MT6000-9b8-5G" = {
             connection = {
-              id = "DOM.RU-OUlA-5G";
+              id = "GL-MT6000-9b8-5G";
               type = "wifi";
               interface-name = "wlan0";
             };
             wifi = {
               mode = "infrastructure";
-              ssid = "DOM.RU-OUlA-5G";
+              ssid = "GL-MT6000-9b8-5G";
             };
             wifi-security = {
               auth-alg = "open";
               key-mgmt = "wpa-psk";
-              psk = "$DOM_RU_OUlA_5G";
+              psk = "$GL-MT6000-9b8-5G";
             };
             ipv4.method = "auto";
             ipv6.method = "auto";

@@ -54,13 +54,14 @@
     LC_TIME = "ru_RU.UTF-8";
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.p47hf1nd3r = {
     isNormalUser = true;
     description = "p47hf1nd3r";
     extraGroups = [
       "networkmanager"
       "wheel"
+      # Разрешение на чтение / запись в /dev/ttyUSB* (для доступа к raspberry pi по UART)
+      "dialout"
     ];
   };
 

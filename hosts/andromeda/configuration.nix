@@ -27,6 +27,10 @@
       "vfat"
       "exfat"
     ];
+    binfmt = {
+      # Включаем эмуляцию aarch64 для удалённого деплоя на raspberry pi
+      emulatedSystems = [ "aarch64-linux" ];
+    };
   };
 
   networking.hostName = "andromeda"; # Define your hostname.

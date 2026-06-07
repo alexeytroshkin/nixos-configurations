@@ -65,7 +65,6 @@
     ];
   };
 
-  # Configure nix
   nix = {
     settings = {
       experimental-features = [
@@ -75,8 +74,15 @@
     };
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      permittedInsecurePackages = [
+        # Для bitwarden-desktop
+        "electron-39.8.10"
+      ];
+    };
+  };
 
   environment = {
     systemPackages = with pkgs; [

@@ -18,6 +18,7 @@ in
   home.homeDirectory = "/home/p47hf1nd3r";
   home.packages = with pkgs; [
     beekeeper-studio
+    bitwarden-desktop
     just
     larksuite
     larksuite-cli

@@ -1,4 +1,10 @@
-{ config, lib, pkgs, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   imports = [
@@ -19,6 +25,18 @@
     };
   };
 
+  # Автоматически монтируем накопитель для бекапов
+  fileSystems = {
+    "/mnt/backup" = {
+      device = "/dev/disk/by-uuid/0f0ce94a-82b8-4d51-b58e-c649df1edd39";
+      fsType = "ext4";
+      options = [
+        "nofail"
+        "users"
+      ];
+    };
+  };
+
   nix = {
     settings = {
       trusted-users = [
@@ -35,19 +53,19 @@
       p47hf1nd3r = {
         isNormalUser = true;
         hashedPasswordFile = config.sops.secrets.p47hf1nd3r_pswd.path;
-        extraGroups = [ 
-          "wheel" 
-          "networkmanager" 
+        extraGroups = [
+          "wheel"
+          "networkmanager"
         ];
         openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKW0ooE2hLuk64i95rZyfIynDzL7hfA2PxPb5UQ3j82u p47hf1nd3r"
         ];
-        packages = with pkgs; [];
+        packages = with pkgs; [ ];
       };
     };
   };
 
-  environment.systemPackages = with pkgs; [];
+  environment.systemPackages = with pkgs; [ ];
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you

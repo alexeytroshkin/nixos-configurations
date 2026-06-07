@@ -67,12 +67,8 @@
         ROCKET_ADDRESS = "127.0.0.1";
         ROCKET_PORT = 8222;
       };
+      backupDir = "/mnt/backup/vaultwarden";
     };
-
-    # forgejo = {
-    #   enable = true;
-    #   user = "p47hf1nd3r";
-    # };
 
     nginx = {
       enable = true;

@@ -27,6 +27,7 @@ in
     sops
     telegram-desktop
     yandex-music
+    warp-terminal
 
     inputs.llm-agents.packages.${system}.but
     inputs.llm-agents.packages.${system}.gitbutler

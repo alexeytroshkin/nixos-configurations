@@ -27,12 +27,12 @@ in
     sops
     telegram-desktop
     yandex-music
-    warp-terminal
 
     inputs.llm-agents.packages.${system}.but
-    inputs.llm-agents.packages.${system}.gitbutler
     inputs.llm-agents.packages.${system}.cursor-agent
+    inputs.llm-agents.packages.${system}.gitbutler
     inputs.llm-agents.packages.${system}.gitnexus
+    inputs.llm-agents.packages.${system}.opencode
   ];
 
   home.file = {

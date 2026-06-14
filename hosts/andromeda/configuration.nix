@@ -33,8 +33,17 @@
     };
   };
 
-  networking.hostName = "andromeda"; # Define your hostname.
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = "andromeda";
+    networkmanager = {
+      enable = true;
+    };
+    firewall = {
+      allowedTCPPorts = [
+        4096 # Для opencode
+      ];
+    };
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Moscow";

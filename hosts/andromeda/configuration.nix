@@ -100,6 +100,9 @@
       neovim
       git
     ];
+    shellAliases = {
+      to-windows = "sudo systemctl reboot --boot-loader-entry=auto-windows";
+    };
   };
 
   hardware = {

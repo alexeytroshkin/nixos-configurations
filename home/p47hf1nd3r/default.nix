@@ -23,6 +23,7 @@ in
     larksuite
     larksuite-cli
     postman
+    rtk
     slack
     sops
     telegram-desktop
@@ -197,6 +198,24 @@ in
   };
 
   programs.numbat = {
+    enable = true;
+  };
+
+  programs.obsidian = {
+    enable = true;
+    cli = {
+      enable = true;
+    };
+    vaults = {
+      "spectrum" = {
+        target = "./Workspaces/spectrum/docs";
+        settings = {
+        };
+      };
+    };
+  };
+
+  programs.claude-code = {
     enable = true;
   };
 }

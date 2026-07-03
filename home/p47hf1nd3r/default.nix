@@ -29,7 +29,6 @@ in
     telegram-desktop
     yandex-music
     cursor-cli
-    direnv
 
     inputs.llm-agents.packages.${system}.but
     # inputs.llm-agents.packages.${system}.cursor-agent
@@ -61,6 +60,19 @@ in
       [core]
         sshCommand = "ssh -o IdentitiesOnly=yes -i ~/.ssh/alexey-troshkin-xpress.pub"
     '';
+  };
+
+  programs.bash = {
+    enable = true;
+  };
+
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
+    silent = true;
+    nix-direnv = {
+      enable = true;
+    };
   };
 
   programs.git = {

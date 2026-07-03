@@ -29,6 +29,7 @@ in
     telegram-desktop
     yandex-music
     cursor-cli
+    direnv
 
     inputs.llm-agents.packages.${system}.but
     # inputs.llm-agents.packages.${system}.cursor-agent

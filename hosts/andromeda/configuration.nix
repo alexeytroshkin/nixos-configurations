@@ -99,6 +99,7 @@
       nixfmt-rs
       neovim
       git
+      podman-compose
     ];
     shellAliases = {
       to-windows = "sudo systemctl reboot --boot-loader-entry=auto-windows";

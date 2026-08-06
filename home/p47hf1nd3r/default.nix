@@ -23,7 +23,6 @@ in
     larksuite
     larksuite-cli
     postman
-    rtk
     slack
     sops
     telegram-desktop

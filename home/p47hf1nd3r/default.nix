@@ -19,6 +19,8 @@ in
   home.packages = with pkgs; [
     beekeeper-studio
     bitwarden-desktop
+    blockbench
+    cursor-cli
     just
     larksuite
     larksuite-cli
@@ -27,7 +29,6 @@ in
     sops
     telegram-desktop
     yandex-music
-    cursor-cli
 
     inputs.llm-agents.packages.${system}.but
     # inputs.llm-agents.packages.${system}.cursor-agent

@@ -31,10 +31,10 @@ in
     yandex-music
 
     inputs.llm-agents.packages.${system}.but
-    # inputs.llm-agents.packages.${system}.cursor-agent
     inputs.llm-agents.packages.${system}.gitbutler
     inputs.llm-agents.packages.${system}.gitnexus
-    inputs.llm-agents.packages.${system}.opencode
+    inputs.llm-agents.packages.${system}.zcode
+    inputs.llm-agents.packages.${system}.codex
   ];
 
   home.file = {

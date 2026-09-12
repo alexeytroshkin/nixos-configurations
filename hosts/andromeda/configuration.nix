@@ -89,6 +89,7 @@
       permittedInsecurePackages = [
         # Для bitwarden-desktop
         "electron-39.8.10"
+        "beekeeper-studio-6.0.5"
       ];
     };
   };

@@ -39,7 +39,7 @@
   services = {
     # Включаем DMS greeter с частичным дублированием настроек композитора т.к. сам почему то не подхватывает.
     displayManager.dms-greeter = {
-      enable = true;
+      enable = false;
       package = inputs.dms.packages.${pkgs.stdenv.hostPlatform.system}.default;
       compositor = {
         name = "niri";
@@ -86,6 +86,11 @@
       # Эти настройки конфликтуют, поэтому здесь ставим false
       #----------------------------------------------------------------
       systemd.enable = false;
+    };
+    dms-greeter = {
+      enable = true;
+      compositor.name = "niri";
+      configHome = "/home/p47hf1nd3r";
     };
   };
 }

@@ -19,6 +19,10 @@ in
   home.packages = with pkgs; [
     beekeeper-studio
     bitwarden-desktop
+    (blender.override {
+      config.cudaSupport = true;
+      config.rocmSupport = false;
+    })
     blockbench
     cursor-cli
     just

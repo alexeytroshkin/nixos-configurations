@@ -12,6 +12,7 @@
   imports = [
     inputs.nixos-hardware.nixosModules.lenovo-legion-16arh7h-hybrid
     inputs.niri.nixosModules.niri
+    inputs.dank-greeter.nixosModules.default
     ./hardware-configuration.nix
     ./modules/gui
   ];
@@ -89,7 +90,7 @@
       permittedInsecurePackages = [
         # Для bitwarden-desktop
         "electron-39.8.10"
-        "beekeeper-studio-6.0.5"
+        "beekeeper-studio-6.1.1"
       ];
     };
   };

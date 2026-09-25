@@ -32,9 +32,11 @@ in
     slack
     sops
     telegram-desktop
+    unityhub
     yandex-music
 
     inputs.llm-agents.packages.${system}.but
+    inputs.llm-agents.packages.${system}.chatgpt
     inputs.llm-agents.packages.${system}.gitbutler
     inputs.llm-agents.packages.${system}.gitnexus
     inputs.llm-agents.packages.${system}.zcode

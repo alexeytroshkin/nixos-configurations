@@ -97,10 +97,11 @@
 
   environment = {
     systemPackages = with pkgs; [
+      git
+      inputs.nix-alien.packages.${system}.nix-alien
+      neovim
       nixd
       nixfmt-rs
-      neovim
-      git
       podman-compose
     ];
     shellAliases = {

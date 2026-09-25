@@ -13,22 +13,23 @@
   };
 
   inputs = {
-    dms.url = "github:AvengeMedia/DankMaterialShell/stable";
-    dms.inputs.nixpkgs.follows = "nixpkgs";
-    dank-greeter.url = "github:AvengeMedia/dank-greeter";
     dank-greeter.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.url = "github:nix-community/home-manager";
+    dank-greeter.url = "github:AvengeMedia/dank-greeter";
+    dms.inputs.nixpkgs.follows = "nixpkgs";
+    dms.url = "github:AvengeMedia/DankMaterialShell/stable";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager";
     llm-agents.url = "github:numtide/llm-agents.nix";
-    niri.url = "github:epireyn/niri-flake";
     niri.inputs.nixpkgs.follows = "nixpkgs";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    niri.url = "github:epireyn/niri-flake";
+    nix-alien.url = "github:thiagokokada/nix-alien";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    sops-nix.url = "github:Mic92/sops-nix";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
-    zen-browser.inputs.nixpkgs.follows = "nixpkgs";
+    sops-nix.url = "github:Mic92/sops-nix";
     zen-browser.inputs.home-manager.follows = "home-manager";
+    zen-browser.inputs.nixpkgs.follows = "nixpkgs";
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
 
   outputs =

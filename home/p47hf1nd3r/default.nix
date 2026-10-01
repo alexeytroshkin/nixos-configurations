@@ -11,12 +11,14 @@ in
     inputs.zen-browser.homeModules.beta
     ./xdg
     ./vscode
+    ./obsidian
   ];
 
   home.stateVersion = "25.11";
   home.username = "p47hf1nd3r";
   home.homeDirectory = "/home/p47hf1nd3r";
   home.packages = with pkgs; [
+    adw-gtk3
     beekeeper-studio
     bitwarden-desktop
     (blender.override {
@@ -219,20 +221,6 @@ in
 
   programs.numbat = {
     enable = true;
-  };
-
-  programs.obsidian = {
-    enable = true;
-    cli = {
-      enable = true;
-    };
-    vaults = {
-      "spectrum" = {
-        target = "./Workspaces/spectrum/docs";
-        settings = {
-        };
-      };
-    };
   };
 
   programs.claude-code = {

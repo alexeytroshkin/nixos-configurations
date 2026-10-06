@@ -21,6 +21,14 @@ in
   programs.obsidian.vaults.spectrum.target = "./Workspaces/spectrum/docs";
   programs.ghostty.settings.theme = "dankcolors";
 
+  gtk = {
+    enable = true;
+    iconTheme = {
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
+    };
+  };
+
   # These optional custom files already exist on the laptop.
   programs.dank-material-shell.niri.includes.filesToInclude = [
     "alttab"

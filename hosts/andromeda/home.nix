@@ -1,17 +1,38 @@
 { pkgs, inputs, ... }:
 let
   system = pkgs.stdenv.hostPlatform.system;
-  larksuite = pkgs.callPackage ./larksuite { };
-  larksuite-cli = pkgs.callPackage ./larksuite-cli { };
+  larksuite = pkgs.callPackage ../../modules/home/larksuite { };
+  larksuite-cli = pkgs.callPackage ../../modules/home/larksuite-cli { };
 in
 {
   imports = [
     inputs.dms.homeModules.dank-material-shell
     inputs.dms.homeModules.niri
     inputs.zen-browser.homeModules.beta
-    ./xdg
-    ./vscode
-    ./obsidian
+    ../../modules/home/desktop/niri.nix
+    ../../modules/home/shell.nix
+    ../../modules/home/terminal.nix
+    ../../modules/home/xdg
+    ../../modules/home/vscode
+    ../../modules/home/obsidian
+    ../../modules/home/obsidian/vaults/expansion.nix
+  ];
+
+  programs.obsidian.vaults.spectrum.target = "./Workspaces/spectrum/docs";
+  programs.ghostty.settings.theme = "dankcolors";
+
+  # These optional custom files already exist on the laptop.
+  programs.dank-material-shell.niri.includes.filesToInclude = [
+    "alttab"
+    "binds"
+    "colors"
+    "cursor"
+    "layout"
+    "outputs"
+    "windowrules"
+    "wpblur"
+    "../blur"
+    "../windowrules"
   ];
 
   home.stateVersion = "25.11";
@@ -70,19 +91,6 @@ in
     '';
   };
 
-  programs.bash = {
-    enable = true;
-  };
-
-  programs.direnv = {
-    enable = true;
-    enableBashIntegration = true;
-    silent = true;
-    nix-direnv = {
-      enable = true;
-    };
-  };
-
   programs.git = {
     enable = true;
 
@@ -106,93 +114,6 @@ in
         };
       };
     };
-  };
-
-  programs.niri = {
-    settings = {
-      prefer-no-csd = true;
-      hotkey-overlay = {
-        skip-at-startup = true;
-      };
-      input = {
-        keyboard = {
-          xkb = {
-            layout = "us, ru";
-            options = "grp:alt_shift_toggle";
-          };
-        };
-      };
-      layout = {
-        background-color = "transparent";
-        preset-column-widths = [
-          { proportion = 1. / 3.; }
-          { proportion = 1. / 2.; }
-          { proportion = 2. / 3.; }
-        ];
-      };
-      overview = {
-        # В режиме обзора убираем тень вокруг рабочих пространств
-        workspace-shadow = {
-          enable = false;
-        };
-      };
-      layer-rules = [
-        # В режиме обзора показываем обои вместо сплошного серого цвета
-        {
-          matches = [
-            { namespace = "^quickshell$"; }
-          ];
-          place-within-backdrop = true;
-        }
-      ];
-      window-rules = [
-        # Открывать окна относящиеся к DMS как "плавающие" по умолчанию
-        {
-          matches = [
-            { app-id = "org.quickshell$"; }
-          ];
-          open-floating = true;
-        }
-      ];
-    };
-  };
-
-  programs.dank-material-shell = {
-    enable = true;
-
-    niri = {
-      enableSpawn = true;
-      includes = {
-        enable = true;
-        override = true;
-        originalFileName = "hm";
-        filesToInclude = [
-          "alttab"
-          "binds"
-          "colors"
-          "cursor"
-          "layout"
-          "outputs"
-          "windowrules"
-          "wpblur"
-          "../blur"
-          "../windowrules"
-        ];
-      };
-    };
-  };
-
-  programs.ghostty = {
-    enable = true;
-
-    settings = {
-      theme = "dankcolors";
-      background-opacity = 0.875;
-    };
-  };
-
-  programs.zellij = {
-    enable = true;
   };
 
   programs.superfile = {

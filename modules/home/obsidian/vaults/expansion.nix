@@ -6,13 +6,11 @@
 }:
 let
   vault = config.programs.obsidian.vaults.expansion;
-  frontMatterTitle = pkgs.callPackage ./front-matter-title { };
+  frontMatterTitle = pkgs.callPackage ../front-matter-title { };
   pluginPath = "plugins/${frontMatterTitle.manifestId}";
 in
 {
   programs.obsidian = {
-    enable = true;
-    cli.enable = true;
     vaults = {
       expansion = {
         target = "Workspaces/expansion_/docs";
@@ -51,13 +49,10 @@ in
           communityPlugins = [
             {
               pkg = frontMatterTitle;
-              settings = builtins.fromJSON (builtins.readFile ./front-matter-title/settings.json);
+              settings = builtins.fromJSON (builtins.readFile ../front-matter-title/settings.json);
             }
           ];
         };
-      };
-      spectrum = {
-        target = "./Workspaces/spectrum/docs";
       };
     };
   };

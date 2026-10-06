@@ -8,10 +8,10 @@ push:
     git push
 
 sops file:
-    EDITOR="code --wait" nix run nixpkgs#sops -- ./modules/sops/secrets/{{file}}
+    EDITOR="code --wait" nix run nixpkgs#sops -- ./modules/nixos/sops/secrets/{{file}}
 
-rebuild command host:
-    nix run nixpkgs#nixos-rebuild -- {{command}} --flake .#{{host}} \
-        --target-host p47hf1nd3r@{{host}} \
+rebuild command host target="":
+    nix run --inputs-from path:. nixpkgs#nixos-rebuild -- {{command}} --flake path:.#{{host}} \
+        --target-host p47hf1nd3r@{{ if target == "" { host } else { target } }} \
         --sudo \
         --ask-sudo-password

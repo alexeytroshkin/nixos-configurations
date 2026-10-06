@@ -45,7 +45,17 @@
       nixosConfigurations = {
         hydra = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          modules = [ ];
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/hydra/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.p47hf1nd3r = import ./hosts/hydra/home.nix;
+              home-manager.extraSpecialArgs = { inherit inputs; };
+            }
+          ];
         };
         andromeda = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
@@ -56,7 +66,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.p47hf1nd3r = import ./home/p47hf1nd3r/default.nix;
+              home-manager.users.p47hf1nd3r = import ./hosts/andromeda/home.nix;
               home-manager.extraSpecialArgs = { inherit inputs; };
             }
           ];

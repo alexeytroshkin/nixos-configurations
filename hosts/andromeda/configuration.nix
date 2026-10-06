@@ -14,7 +14,9 @@
     inputs.niri.nixosModules.niri
     inputs.dank-greeter.nixosModules.default
     ./hardware-configuration.nix
+    ../../modules/nixos/desktop/niri.nix
     ./modules/gui
+    ../../modules/nixos/virtualisation/podman.nix
   ];
 
   boot = {
@@ -147,13 +149,6 @@
     };
     udisks2 = {
       enable = true;
-    };
-  };
-
-  virtualisation = {
-    podman = {
-      enable = true;
-      dockerCompat = true;
     };
   };
 

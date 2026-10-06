@@ -13,7 +13,7 @@
     ./hardware-configuration.nix
     ./modules/networking.nix
     ./modules/services.nix
-    ./../../modules/sops
+    ../../modules/nixos/sops
   ];
 
   boot = {

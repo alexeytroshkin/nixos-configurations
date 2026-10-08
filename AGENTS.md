@@ -24,3 +24,13 @@
   evaluated system derivations before and after structural changes.
 - Keep `flake.lock` unchanged unless an input update is explicitly requested.
 - Never store passwords or private keys in the repository.
+
+## Niri ownership
+
+- Permanent Niri settings belong to Nix; only DMS's dynamic `colors.kdl` is
+  included normally. Other DMS fragments are for explicit UI experiments.
+- Preserve host shortcuts and window behavior when migrating desktop settings.
+- Monitor settings live in `hosts/<hostname>/monitor.nix`. Greeter outputs are
+  rendered from evaluated Home Manager outputs; do not duplicate their values.
+- Andromeda's internal panel is enabled when its external Samsung display is
+  absent or disabled. Preserve this policy in the greeter and user session.

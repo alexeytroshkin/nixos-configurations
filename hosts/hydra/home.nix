@@ -49,16 +49,5 @@
   };
 
   programs.niri.settings.outputs = (import ./monitor.nix).outputs;
-  # Keep host monitor settings authoritative instead of DMS-generated outputs.
-  programs.dank-material-shell.niri.includes.filesToInclude = [
-    "alttab"
-    "binds"
-    "colors"
-    "cursor"
-    "layout"
-    "windowrules"
-    "wpblur"
-  ];
-
   # Vaults are selected here when hydra's working directories are ready.
 }

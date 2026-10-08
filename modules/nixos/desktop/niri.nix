@@ -1,4 +1,9 @@
-{ inputs, pkgs, ... }:
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 
 {
   # Hosts import the upstream Niri and dank-greeter modules alongside this one.
@@ -18,6 +23,13 @@
   };
 
   environment = {
+    # Render the same evaluated output nodes for the login screen and user session.
+    # The greeter includes this file without replacing its own baseline config.
+    etc."greetd/niri_overrides.kdl".text = inputs.niri.lib.kdl.serialize.nodes (
+      builtins.filter (
+        node: node.name == "output"
+      ) config.home-manager.users.p47hf1nd3r.programs.niri.config
+    );
     systemPackages = with pkgs; [
       # Костыли для работы X11 приложений
       xwayland

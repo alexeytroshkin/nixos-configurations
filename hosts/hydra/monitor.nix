@@ -20,29 +20,4 @@ in
     "${hdmi}".enable = false;
   };
 
-  # A custom greeter config replaces its default, so retain the greeter basics.
-  greeterConfig = ''
-    hotkey-overlay {
-      skip-at-startup
-    }
-    environment {
-      DMS_RUN_GREETER "1"
-    }
-    gestures {
-      hot-corners {
-        off
-      }
-    }
-    layout {
-      background-color "#000000"
-    }
-    output "${displayPort}" {
-      mode "3440x1440@144.000"
-      scale 1
-      position x=0 y=0
-    }
-    output "${hdmi}" {
-      off
-    }
-  '';
 }

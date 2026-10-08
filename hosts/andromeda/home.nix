@@ -10,6 +10,7 @@ in
     inputs.dms.homeModules.niri
     inputs.zen-browser.homeModules.beta
     ../../modules/home/desktop/niri.nix
+    ./modules/niri.nix
     ../../modules/home/shell.nix
     ../../modules/home/terminal.nix
     ../../modules/home/xdg
@@ -28,20 +29,6 @@ in
       package = pkgs.adwaita-icon-theme;
     };
   };
-
-  # These optional custom files already exist on the laptop.
-  programs.dank-material-shell.niri.includes.filesToInclude = [
-    "alttab"
-    "binds"
-    "colors"
-    "cursor"
-    "layout"
-    "outputs"
-    "windowrules"
-    "wpblur"
-    "../blur"
-    "../windowrules"
-  ];
 
   home.stateVersion = "25.11";
   home.username = "p47hf1nd3r";

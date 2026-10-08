@@ -15,7 +15,7 @@
     inputs.dank-greeter.nixosModules.default
     ./hardware-configuration.nix
     ../../modules/nixos/desktop/niri.nix
-    ./modules/gui
+    ./modules/monitor-policy.nix
     ../../modules/nixos/virtualisation/podman.nix
   ];
 
